@@ -1,0 +1,31 @@
+<div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTaskModalLabel">Update task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="dismiss_modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="createTaskForm" method="post" action="{% url 'update_task' %}">
+                {% csrf_token %}
+                <input type="hidden" name="task_id" value="" id="update_task_input_id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="newTaskName" class="form-label">New task name</label>
+                        <input type="text" class="form-control" id="newTaskName" name="new_task_name" value="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newTaskDescription" class="form-label">New tsk description</label>
+                        <textarea class="form-control" id="newTaskDescription" name="new_task_description"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

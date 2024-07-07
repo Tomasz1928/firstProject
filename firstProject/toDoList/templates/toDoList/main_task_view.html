@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<form id="delete_form" method="post" action="{% url 'delete_tasks' %}">
+        {% csrf_token %}
+    </form>
+
+<form id="show_details_form" method="post" action="{% url 'task_details_view' %}">
+        {% csrf_token %}
+    </form>
+
+<div class="container">
+    <div class="text-center">
+        <h3>To do List</h3>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task Overwiew</th>
+            <th scope="col">Select</th>
+        </tr>
+        </thead>
+        {% for item in task %}
+        <tbody>
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ item.name }}</td>
+            <td><input type="checkbox" class="btn-check" data-id="{{ item.id }}"></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+
+<div class="text-center">
+    {% if task %}
+        <div class="d-inline-block mr-3" id="delete_container">
+            <button type="button" class="btn btn-danger" id="delete_button">Delete</button>
+        </div>
+    {% endif %}
+    <div class="d-inline-block mr-3">
+        <button type="button" class="btn btn-success" id="create_button">Create Task</button>
+    </div>
+    <div class="d-inline-block mr-3">
+        <button type="button" class="btn btn-info" id="show_details">Show details</button>
+    </div>
+
+</div>
+    {% include 'toDoList/create_task_modal.html' %}
+
+<script src="{% static 'toDoList/js/deleteTaskLogic.js' %}"></script>
+    <script src="{% static 'toDoList/js/createNewTask.js' %}"></script>
+    <script src="{% static 'toDoList/js/showDetails.js' %}"></script>
+</body>
+</html>
