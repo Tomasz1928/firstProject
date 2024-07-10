@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+
+
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Task name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+
+
+        {% for item in task %}
+        <tbody>
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td><input class="form-check-input" type="radio" name="task_update" data-id="{{ item.id }}"></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+
+    </table>
+
+<div>
+
+</div>
+
+<div class="text-center">
+    <div class="d-inline-block mr-3">
+        <a type="button" class="btn btn-info" href="{% url 'main_task_views' %}">Main view</a>
+    </div>
+
+    <div class="d-inline-block mr-3">
+        <button type="button" class="btn btn-primary" id="update_task_button">Update Task</button>
+    </div>
+</div>
+
+</div>
+    {% include 'toDoList/update_task_modal.html' %}
+
+</body>
+<script src="{% static 'toDoList/js/updateTask.js' %}"></script>
+
+</html>
